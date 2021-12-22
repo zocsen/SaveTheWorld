@@ -21,8 +21,8 @@ public class Controller : MonoBehaviour
 
     public void Update()
     {
-        treeText.text = "Tree Count: " + data.trees;
-        treeClickPowerText.text = "+" + ClickPower() + " Tree";
+        treeText.text = "Tree Count: " + data.trees.ToString("F0");
+        treeClickPowerText.text = "+" + ClickPower() + " Tree / Click";
     }
 
     public void GenerateTree()

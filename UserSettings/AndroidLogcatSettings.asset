@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "192.168.1.2:5555",
+    "m_SelectedDeviceId": "192.168.1.3:5555",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "192.168.1.3:5555",
+        "name": "com.DefaultCompany.com.unity.template.mobile2D",
+        "processId": 2999,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -42,6 +42,78 @@
             "deviceId": "192.168.1.2:5555",
             "name": "com.sec.android.app.launcher",
             "processId": 2824,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCNC066K7X",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 21083,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCNC066K7X",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 32539,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCNC066K7X",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 4854,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCNC066K7X",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 14696,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCNC066K7X",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 18548,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCNC066K7X",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 19767,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCNC066K7X",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 30933,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCNC066K7X",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 18452,
+            "exited": false
+        },
+        {
+            "deviceId": "192.168.1.3:5555",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 23985,
+            "exited": false
+        },
+        {
+            "deviceId": "192.168.1.3:5555",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 29580,
+            "exited": false
+        },
+        {
+            "deviceId": "192.168.1.3:5555",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 30358,
+            "exited": false
+        },
+        {
+            "deviceId": "192.168.1.3:5555",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 2999,
             "exited": false
         }
     ],
