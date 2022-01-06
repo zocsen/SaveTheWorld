@@ -16,7 +16,7 @@ public class UpgradesManager : MonoBehaviour
 
     public void StartUpgradeManager()
     {
-        clickUpgradeName = "Trees / Click";
+        clickUpgradeName = "Volunteers / Click";
         clickUpgradeBaseCost = 10;
         clickUpgradeCostMult = 1.5;
         UpdateClickUpgradeUI();
@@ -25,7 +25,7 @@ public class UpgradesManager : MonoBehaviour
     public void UpdateClickUpgradeUI()
     {
         clickUpgrade.LevelText.text = "Level: " + controller.data.clickUpgradeLevel.ToString();
-        clickUpgrade.CostText.text = "Cost: " + Cost().ToString("F0") + " Trees";
+        clickUpgrade.CostText.text = "Cost: " + Cost().ToString("F0") + " Volunteers";
         clickUpgrade.NameText.text = "+1 " + clickUpgradeName;
     }
 
@@ -34,9 +34,9 @@ public class UpgradesManager : MonoBehaviour
 
     public void BuyUpgrade()
     {
-        if (controller.data.trees >= Cost())
+        if (controller.data.volunteers >= Cost())
         {
-            controller.data.trees -= Cost();
+            controller.data.volunteers -= Cost();
             controller.data.clickUpgradeLevel += 1;
         }
         UpdateClickUpgradeUI();

@@ -47,7 +47,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     }
     IEnumerator SmoothMove(Vector3 startpos, Vector3 endpos, float seconds)
     {
-        float t = 0.2f;
+        float t = 0f;
         while (t <= 1.0)
         {
             t += Time.deltaTime / seconds;

@@ -5,13 +5,13 @@ using BreakInfinity;
 
 public class Data
 {
-    public BigDouble trees;
+    public BigDouble volunteers;
 
     public BigDouble clickUpgradeLevel;
 
     public Data()
     {
         clickUpgradeLevel = 0;
-        trees = 0;
+        volunteers = 0;
     }
 }

@@ -7,26 +7,28 @@ public class Controller : MonoBehaviour
 {
     public UpgradesManager upgradeManager;
     public Data data;
-    public TMP_Text treeText;
-    public TMP_Text treeClickPowerText;
+    public TMP_Text volunteersText;
+    public TMP_Text volunteersClickPowerText;
 
     public BigDouble ClickPower() => 1 + data.clickUpgradeLevel;
     
 
     public void Start()
     {
+        Application.targetFrameRate = 120;
+
         data = new Data();
         upgradeManager.StartUpgradeManager();
     }
 
     public void Update()
     {
-        treeText.text = "Tree Count: " + data.trees.ToString("F0");
-        treeClickPowerText.text = "+" + ClickPower() + " Tree / Click";
+        volunteersText.text = "Volunteers: " + data.volunteers.ToString("F0");
+        volunteersClickPowerText.text = "+" + ClickPower() + " Volunteers / Click";
     }
 
-    public void GenerateTree()
+    public void GenerateVolunteers()
     {
-        data.trees += ClickPower();
+        data.volunteers += ClickPower();
     }
 }
