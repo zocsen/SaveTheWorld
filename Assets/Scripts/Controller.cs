@@ -9,26 +9,48 @@ public class Controller : MonoBehaviour
     public Data data;
     public TMP_Text volunteersText;
     public TMP_Text volunteersClickPowerText;
+    //
+    public TMP_Text treeCounterText;
+    public TMP_Text treePerSecText;
 
-    public BigDouble ClickPower() => 1 + data.clickUpgradeLevel;
-    
+    public BigDouble ClickPower() => 1 + data.volunteerUpgradeLevel;
 
+    public BigDouble TreePerSecond() => data.treeUpgradeLevel;
+
+
+    private const string dataFileName = "PlayerData";
     public void Start()
     {
         Application.targetFrameRate = 120;
 
-        data = new Data();
+        data = SaveSystem.SaveExists(dataFileName)
+            ? SaveSystem.LoadData<Data>(dataFileName): 
+            new Data();
         upgradeManager.StartUpgradeManager();
     }
 
+    public float SaveTime;
+
     public void Update()
     {
-        volunteersText.text = "Volunteers: " + data.volunteers.ToString("F0");
+        volunteersText.text = "Volunteers: " + data.volunteer.ToString("F0");
         volunteersClickPowerText.text = "+" + ClickPower() + " Volunteers / Click";
+        //
+        data.tree += TreePerSecond() * Time.deltaTime;
+        treeCounterText.text = "Trees: " + data.tree.ToString("F0");
+        treePerSecText.text = "+" + TreePerSecond() + " Trees / Second";
+
+        SaveTime += Time.deltaTime * (1 / Time.timeScale);
+        if(SaveTime >= 5)
+        {
+            SaveSystem.SaveData(data, dataFileName);
+            SaveTime = 0;
+        }
+
     }
 
     public void GenerateVolunteers()
     {
-        data.volunteers += ClickPower();
+        data.volunteer += ClickPower();
     }
 }

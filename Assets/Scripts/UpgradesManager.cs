@@ -7,37 +7,60 @@ public class UpgradesManager : MonoBehaviour
 {
     public Controller controller;
 
-    public Upgrades clickUpgrade;
-    public string clickUpgradeName;
-    
+    public Upgrades volunteerUpgrade;
+    public string volunteerUpgradeName;
+    public BigDouble volunteerUpgradeBaseCost;
+    public BigDouble volunteerUpgradeCostMult;
 
-    public BigDouble clickUpgradeBaseCost;
-    public BigDouble clickUpgradeCostMult;
+    public Upgrades treeUpgrade;
+    public string treeUpgradeName;
+    public BigDouble treeUpgradeBaseCost;
+    public BigDouble treeUpgradeCostMult;
 
     public void StartUpgradeManager()
     {
-        clickUpgradeName = "Volunteers / Click";
-        clickUpgradeBaseCost = 10;
-        clickUpgradeCostMult = 1.5;
+        volunteerUpgradeName = "Volunteers/Click";
+        volunteerUpgradeBaseCost = 10;
+        volunteerUpgradeCostMult = 1.5;
+        //
+        treeUpgradeName = "Trees/Click";
+        treeUpgradeBaseCost = 10;
+        treeUpgradeCostMult = 1.5;
         UpdateClickUpgradeUI();
     }
 
     public void UpdateClickUpgradeUI()
     {
-        clickUpgrade.LevelText.text = "Level: " + controller.data.clickUpgradeLevel.ToString();
-        clickUpgrade.CostText.text = "Cost: " + Cost().ToString("F0") + " Volunteers";
-        clickUpgrade.NameText.text = "+1 " + clickUpgradeName;
+        volunteerUpgrade.LevelText.text = "Level: " + controller.data.volunteerUpgradeLevel.ToString();
+        volunteerUpgrade.NameText.text = "+1 " + volunteerUpgradeName;
+        volunteerUpgrade.CostText.text = "Cost: " + VolunteerCost().ToString("F0") + " Volunteers";
+        //
+        treeUpgrade.LevelText.text = "Level: " + controller.data.treeUpgradeLevel.ToString();
+        treeUpgrade.NameText.text = "+1" + treeUpgradeName;
+        treeUpgrade.CostText.text = "Cost: " + TreeCost().ToString("F0") + " Volunteers";
+
+
     }
 
+    public BigDouble VolunteerCost() => volunteerUpgradeBaseCost * BigDouble.Pow(volunteerUpgradeCostMult, controller.data.volunteerUpgradeLevel);
+    public BigDouble TreeCost() => treeUpgradeBaseCost * BigDouble.Pow(treeUpgradeCostMult,controller.data.treeUpgradeLevel);
 
-    public BigDouble Cost() => clickUpgradeBaseCost * BigDouble.Pow(clickUpgradeCostMult, controller.data.clickUpgradeLevel);
-
-    public void BuyUpgrade()
+    public void BuyVolunteerUpgrade()
     {
-        if (controller.data.volunteers >= Cost())
+        if (controller.data.volunteer >= VolunteerCost())
         {
-            controller.data.volunteers -= Cost();
-            controller.data.clickUpgradeLevel += 1;
+            controller.data.volunteer -= VolunteerCost();
+            controller.data.volunteerUpgradeLevel += 1;
+        }
+        UpdateClickUpgradeUI();
+    }
+    //
+    public void BuyTreeUpgrade()
+    {
+        if (controller.data.volunteer >= TreeCost())
+        {
+            controller.data.volunteer -= TreeCost();
+            controller.data.treeUpgradeLevel += 1;
         }
         UpdateClickUpgradeUI();
     }
