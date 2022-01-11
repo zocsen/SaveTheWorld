@@ -23,9 +23,11 @@ public class UpgradesManager : MonoBehaviour
         volunteerUpgradeBaseCost = 10;
         volunteerUpgradeCostMult = 1.5;
         //
-        treeUpgradeName = "Trees/Click";
+        treeUpgradeName = "Trees/Sec";
         treeUpgradeBaseCost = 10;
         treeUpgradeCostMult = 1.5;
+
+        // Have to be last
         UpdateClickUpgradeUI();
     }
 
@@ -44,6 +46,7 @@ public class UpgradesManager : MonoBehaviour
 
     public BigDouble VolunteerCost() => volunteerUpgradeBaseCost * BigDouble.Pow(volunteerUpgradeCostMult, controller.data.volunteerUpgradeLevel);
     public BigDouble TreeCost() => treeUpgradeBaseCost * BigDouble.Pow(treeUpgradeCostMult,controller.data.treeUpgradeLevel);
+
 
     public void BuyVolunteerUpgrade()
     {

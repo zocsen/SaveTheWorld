@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlueprintHide : MonoBehaviour
+public class PanelActivator : MonoBehaviour
 {
     public GameObject Blueprint0, Blueprint1, Blueprint2, Blueprint3, Blueprint4;
     public GameObject BaseButton;
