@@ -27,13 +27,13 @@ public class Data
     public Data()
     {
         gems = 0;
-        prestige = 0;
+        prestige = 1;
         volunteer = 0;
         volunteerUpgradeLevel = 0;
         tree = 0;
         treeUpgradeLevel = 0;
 
-        dailyRewardReady = false;
+        dailyRewardReady = true;
         currentDay = 0;
         utcTime = DateTime.UtcNow;
 

@@ -11,29 +11,23 @@ public class OfflineManager : MonoBehaviour
     public Controller controller;
 
     public GameObject offlinePopup;
+    public GameObject errorPanel;
+
     public TMP_Text timeAwayText;
     public TMP_Text moneyGainedText;
 
     public UTCTime utcTime;
     public class UTCTime
     {
-        public string datetime;
+        public string dateTime;
     }
 
     public DateTime tempDateTime;
 
     public void Start()
     {
-        StartCoroutine(Timer());
+        StartCoroutine(Timer(5)); // Gets UTC time every x sec
     }
-
-    public void Update()
-    {
-        //StartCoroutine(GetUTCTime());
-        //StartCoroutine(Timer());
-        
-    }
-
 
     public async void LoadOfflineProduction()
     {
@@ -60,10 +54,7 @@ public class OfflineManager : MonoBehaviour
             {
                 timeAwayText.text = string.Format("You were away for\n {0} Minutes {1} Seconds", timer.Minutes, timer.Seconds);
             }
-            else
-            {
-                timeAwayText.text = string.Format("You were away for\n {0} Seconds", timer.Seconds);
-            }
+            else timeAwayText.text = string.Format("You were away for\n {0} Seconds", timer.Seconds);
             
             moneyGainedText.text = "+" + (int)timer.TotalSeconds * controller.data.treeUpgradeLevel + " Tree";
             controller.data.tree += (int)timer.TotalSeconds * controller.data.treeUpgradeLevel;
@@ -73,23 +64,19 @@ public class OfflineManager : MonoBehaviour
     public async Task<DateTime> AwaitGetUTCTime()
     {
         StartCoroutine(GetUTCTime());
-        await Task.Delay(4000);
+        await Task.Delay(1000);
         return tempDateTime;
         
     }
-    public void CloseOffline()
-    {
-        offlinePopup.gameObject.SetActive(false);
-    }
+
     public IEnumerator GetUTCTime()
     {
-        var request = UnityWebRequest.Get("http://worldtimeapi.org/api/timezone/etc/UTC/");
-        // var request = UnityWebRequest.Get("https://www.timeapi.io/api/Time/current/zone?timeZone=Europe/Amsterdam");
+        var request = UnityWebRequest.Get("https://timeapi.io/api/Time/current/zone?timeZone=Europe/Amsterdam");
         yield return request.SendWebRequest();
         if (request.result == UnityWebRequest.Result.ProtocolError || request.result == UnityWebRequest.Result.ConnectionError) yield break;
         var json = request.downloadHandler.text;
         utcTime = JsonUtility.FromJson<UTCTime>(json);
-        tempDateTime = Convert.ToDateTime(utcTime.datetime);
+        tempDateTime = Convert.ToDateTime(utcTime.dateTime);
         Debug.Log(tempDateTime);
 
         if (tempDateTime.Year != DateTime.Now.Year)
@@ -102,10 +89,25 @@ public class OfflineManager : MonoBehaviour
         }
     }
 
-    private IEnumerator Timer()
+    public void OpenErrorMessage()
     {
-        yield return new WaitForSeconds(10);
+        errorPanel.gameObject.SetActive(true);
+    }
+
+    public void CloseErrorMessage()
+    {
+        errorPanel.gameObject.SetActive(false);
+    }
+
+    public void CloseOffline()
+    {
+        offlinePopup.gameObject.SetActive(false);
+    }
+
+    private IEnumerator Timer(float sec)
+    {
+        yield return new WaitForSeconds(sec);
         StartCoroutine(GetUTCTime());
-        StartCoroutine(Timer());
+        StartCoroutine(Timer(sec));
     }
 }

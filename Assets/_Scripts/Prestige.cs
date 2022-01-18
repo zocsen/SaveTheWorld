@@ -11,17 +11,15 @@ public class Prestige : MonoBehaviour
     public void ResetProgress()
     {
         controller.data.gems = 0;
-
-        controller.data.currentDay = 0;
-        controller.data.utcTime = DateTime.UtcNow;
-        controller.data.dailyRewardReady = true;
-
         controller.data.volunteer = 0;
         controller.data.volunteerUpgradeLevel = 0;
         controller.data.tree = 0;
         controller.data.treeUpgradeLevel = 0;
         controller.data.prestige = 0;
 
+        controller.data.currentDay = 0;
+        controller.data.utcTime = DateTime.UtcNow;
+        controller.data.dailyRewardReady = true;
         // Have to be last
         upgradesManager.StartUpgradeManager();
     }

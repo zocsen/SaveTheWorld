@@ -15,6 +15,7 @@ public class Controller : MonoBehaviour
     public TMP_Text volunteersClickPowerText;
     public TMP_Text treeCounterText;
     public TMP_Text treePerSecText;
+    public float SaveTime;
 
 
     public BigDouble ClickPower() => 1 + data.volunteerUpgradeLevel;
@@ -32,13 +33,14 @@ public class Controller : MonoBehaviour
             new Data();
         upgradeManager.StartUpgradeManager(); // Save Management
 
-        daily.StartGetUTCTime();
-        offlineManager.GetUTCTime();
-        offlineManager.LoadOfflineProduction();
-
+        if (Application.internetReachability == NetworkReachability.NotReachable) offlineManager.OpenErrorMessage();
+        else
+        {
+            daily.StartGetUTCTime();
+            offlineManager.LoadOfflineProduction();
+        }
     }
 
-    public float SaveTime;
     public void Update()
     {
         gemsText.text = data.gems.ToString("F0");
@@ -56,7 +58,6 @@ public class Controller : MonoBehaviour
             SaveSystem.SaveData(data, dataFileName);
             SaveTime = 0;
         } // SaveTime
-
     }
 
     public void GenerateVolunteers()

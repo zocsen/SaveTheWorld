@@ -28,12 +28,7 @@ public class DailyRewardManager : MonoBehaviour
     public UTCTime utcTime;
     public class UTCTime
     {
-        public string datetime;
-    }
-
-    public class TempDateTime
-    {
-        public DateTime datetime;
+        public string dateTime;
     }
 
     public void StartGetUTCTime()
@@ -97,15 +92,14 @@ public class DailyRewardManager : MonoBehaviour
     public IEnumerator GetUTCTime()
     {
         var data = controller.data;
-        var request = UnityWebRequest.Get("https://worldtimeapi.org/api/timezone/etc/UTC/");
+        var request = UnityWebRequest.Get("https://timeapi.io/api/Time/current/zone?timeZone=Europe/Amsterdam");
         yield return request.SendWebRequest();
         if (request.result == UnityWebRequest.Result.ProtocolError || request.result == UnityWebRequest.Result.ConnectionError) yield break;
         // if (request.isHttpError || request.isNetworkError) yield break;
         var json = request.downloadHandler.text;
         utcTime = JsonUtility.FromJson<UTCTime>(json);
-        tempDateTime = Convert.ToDateTime(utcTime.datetime);
-        // PlayerPrefs.SetString("Last_Login", tempDateTime.ToBinary().ToString());
-
+        tempDateTime = Convert.ToDateTime(utcTime.dateTime);
+        
         if ((data.utcTime.Day != tempDateTime.Day || data.utcTime.Month != tempDateTime.Month || data.utcTime.Year != tempDateTime.Year) && !data.dailyRewardReady)
         {
             data.dailyRewardReady = true;
