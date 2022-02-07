@@ -77,17 +77,16 @@ public class DailyRewardManager : MonoBehaviour
     {
         dailyReward.gameObject.SetActive(true);
     }
-
     public void CloseRewards()
     {
        // dailyRewardClaimed.gameObject.SetActive(false);
         dailyReward.gameObject.SetActive(false);
     }
-
     public void ToggleRewards()
     {
         dailyReward.gameObject.SetActive(!dailyReward.gameObject.activeSelf);
     }
+
 
     public IEnumerator GetUTCTime()
     {

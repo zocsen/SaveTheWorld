@@ -41,7 +41,7 @@ public class OfflineManager : MonoBehaviour
 
             offlinePopup.gameObject.SetActive(true);
             TimeSpan timer = TimeSpan.FromSeconds(rawTime);
-
+                                                                                                                
             if (timer.Days != 0)
             {
                 timeAwayText.text = string.Format("You were away for\n {0} Days {1} Hours {2} Minutes {3} Seconds", timer.Days, timer.Hours, timer.Minutes, timer.Seconds);
