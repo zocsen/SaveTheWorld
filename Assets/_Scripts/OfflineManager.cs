@@ -5,6 +5,7 @@ using TMPro;
 using System;
 using System.Threading.Tasks;
 using UnityEngine.Networking;
+using BreakInfinity;
 
 public class OfflineManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class OfflineManager : MonoBehaviour
     }
 
     public DateTime tempDateTime;
+    public BigDouble mainCurrencyGained;
 
     public void Start()
     {
@@ -55,9 +57,11 @@ public class OfflineManager : MonoBehaviour
                 timeAwayText.text = string.Format("You were away for\n {0} Minutes {1} Seconds", timer.Minutes, timer.Seconds);
             }
             else timeAwayText.text = string.Format("You were away for\n {0} Seconds", timer.Seconds);
-            
-            moneyGainedText.text = "+" + (int)timer.TotalSeconds * controller.data.treeUpgradeLevel + " Tree";
-            controller.data.tree += (int)timer.TotalSeconds * controller.data.treeUpgradeLevel;
+
+            mainCurrencyGained += (int)timer.TotalSeconds * (controller.data.treeUpgradeLevel);
+
+            moneyGainedText.text = "+" + mainCurrencyGained + " Currency";
+            controller.data.mainCurrency += mainCurrencyGained;
         }
     }
 

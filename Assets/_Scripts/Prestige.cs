@@ -10,6 +10,7 @@ public class Prestige : MonoBehaviour
 
     public void ResetProgress()
     {
+        controller.data.mainCurrency = 10;
         controller.data.gems = 0;
         controller.data.volunteer = 0;
         controller.data.volunteerUpgradeLevel = 0;

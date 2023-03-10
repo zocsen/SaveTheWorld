@@ -79,7 +79,6 @@ public class DailyRewardManager : MonoBehaviour
     }
     public void CloseRewards()
     {
-       // dailyRewardClaimed.gameObject.SetActive(false);
         dailyReward.gameObject.SetActive(false);
     }
     public void ToggleRewards()

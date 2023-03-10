@@ -16,6 +16,7 @@ public class UpgradesManager : MonoBehaviour
     public string treeUpgradeName;
     public BigDouble treeUpgradeBaseCost;
     public BigDouble treeUpgradeCostMult;
+    public BigDouble treeVolunteerCost;
 
     public void StartUpgradeManager()
     {
@@ -26,6 +27,7 @@ public class UpgradesManager : MonoBehaviour
         treeUpgradeName = "Trees/Sec";
         treeUpgradeBaseCost = 10;
         treeUpgradeCostMult = 1.5;
+        treeVolunteerCost = 10;
 
         // Have to be last
         UpdateClickUpgradeUI();

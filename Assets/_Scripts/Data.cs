@@ -8,12 +8,14 @@ using System;
 public class Data
 {
     // Player Data
+    public BigDouble mainCurrency;
     public BigDouble gems;
     public BigDouble prestige;
     public BigDouble volunteer;
     public BigDouble volunteerUpgradeLevel;
     public BigDouble tree;
     public BigDouble treeUpgradeLevel;
+    public BigDouble selectiveBinsLevel;
 
     // Daily Reward Data
     public bool dailyRewardReady;
@@ -26,17 +28,21 @@ public class Data
 
     public Data()
     {
-        gems = 0;
+        // Player Data
+        mainCurrency = 10;
+        gems = 500;
         prestige = 1;
         volunteer = 0;
         volunteerUpgradeLevel = 0;
         tree = 0;
         treeUpgradeLevel = 0;
 
+        //Daily Reward Data
         dailyRewardReady = true;
         currentDay = 0;
         utcTime = DateTime.UtcNow;
 
+        //Offline Progress Data
         offlineProgressCheck = false;
     }
 }
